@@ -1,0 +1,90 @@
+# Starship configuration file:
+format = """
+[░▒▓](#3B82F6)[  ](bg:#3B82F6 fg:#FFFFFF)[](bg:#4B5563 fg:#3B82F6)\
+$directory\
+[](bg:#F59E0B fg:#4B5563)\
+$git_branch\
+$git_status\
+[](bg:#10B981 fg:#F59E0B)\
+$c\
+$python\
+$golang\
+$rust\
+[](fg:#10B981)\
+$fill\
+[](fg:#6B7280)\
+$cmd_duration\
+[](bg:#6B7280 fg:#374151)\
+$time\
+[▓▒░](fg:#374151)
+$character"""
+
+# Verhindert Leerzeilen zwischen den Prompts
+add_newline = false
+
+# Erzwingt die Ausrichtung der rechten Seite am Terminalrand
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[❯](bold green) "
+error_symbol = "[❯](bold red) "
+
+[directory]
+format = "[    $path ]($style)"
+style = "bg:#4B5563 fg:#E5E7EB"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+format = "[    $branch ]($style)"
+style = "bg:#F59E0B fg:#1F2937"
+
+[git_status]
+format = "([$all_status]($style))"
+style = "bg:#F59E0B fg:#1F2937"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[cmd_duration]
+format = "[    $duration ]($style)"
+style = "bg:#6B7280 fg:#F9FAFB"
+
+[time]
+disabled = false
+time_format = "%R"
+format = "[    $time ]($style)"
+style = "bg:#374151 fg:#E5E7EB"
+
+# Programmiersprachen (werden nur im passenden Ordner farbig angezeigt)
+[c]
+symbol = " "
+style = "bg:#10B981 fg:#1F2937"
+format = "[ $symbol($version) ]($style)"
+
+[python]
+symbol = " "
+style = "bg:#10B981 fg:#1F2937"
+format = "[ $symbol($version) ]($style)"
+
+[golang]
+symbol = " "
+style = "bg:#10B981 fg:#1F2937"
+format = "[ $symbol($version) ]($style)"
+
+[rust]
+symbol = " "
+style = "bg:#10B981 fg:#1F2937"
+format = "[ $symbol($version) ]($style)"
+
+[package]
+disabled = true
+
