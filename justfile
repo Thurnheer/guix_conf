@@ -4,11 +4,13 @@ config := "config.scm"
 home_config := "guix-home-config.scm"
 channels := "channels.scm"
 guix := "/run/current-system/profile/bin/guix"
+editor := "nvim"
 
 # Show available commands
 default:
   @just --list
 
+# update Guix/Nonguix revisions intentionally
 update-pins:
   sudo {{guix}} time-machine -C {{channels}} -- describe -f channels > channels.new.scm
   mv channels.new.scm channels.scm
@@ -21,9 +23,11 @@ reconfigure:
 build:
   sudo {{guix}} time-machine -C {{channels}} -- system build {{config}}
 
+# Build home config only, without activating it
 home-build:
   {{guix}} time-machine -C {{channels}} -- home build {{home_config}}
 
+# Activate/update your Guix Home configuration
 home-reconfigure:
   {{guix}} time-machine -C {{channels}} -- home reconfigure {{home_config}}
 
@@ -40,8 +44,8 @@ test-nonguix:
 
 # Edit system config
 edit:
-  sudo nvim {{config}}
+  {{editor}} {{config}}
 
 # Edit channels
 edit-channels:
-  sudo nvim {{channels}}
+  {{editor}} {{channels}}
