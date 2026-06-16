@@ -15,6 +15,10 @@ update-pins:
   sudo {{guix}} time-machine -C {{channels}} -- describe -f channels > channels.new.scm
   mv channels.new.scm channels.scm
 
+# pull Guix/Nonguix revisions intentionally
+pull:
+  sudo {{guix}} pull -C channels-lock.scm
+
 # Reconfigure system using the pinned channel file
 reconfigure:
   sudo {{guix}} time-machine -C {{channels}} -- system reconfigure {{config}}
