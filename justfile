@@ -17,7 +17,7 @@ update-pins:
 
 # pull Guix/Nonguix revisions intentionally
 pull:
-  sudo {{guix}} pull -C channels-lock.scm
+  sudo {{guix}} pull -C channels.scm
 
 # Reconfigure system using the pinned channel file
 reconfigure:

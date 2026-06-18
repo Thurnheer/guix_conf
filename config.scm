@@ -19,9 +19,14 @@
 	     (gnu services base)
 	     (gnu services cups)
 	     (gnu services desktop)
-	     (gnu services shadow)
+	     (gnu system shadow)
 	     (gnu packages embedded)
 	     (nongnu system linux-initrd))
+
+  (define %stlink-v2-1-udev-rule
+    (udev-rule
+      "70-stlink-v2-1.rules"
+   "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0483\", ATTR{idProduct}==\"374b\", MODE=\"0660\", GROUP=\"plugdev\", TAG+=\"uaccess\"\n"))
 
 (operating-system
   (initrd microcode-initrd)
@@ -41,11 +46,6 @@
                   (shell (file-append zsh "/bin/zsh"))
                   (supplementary-groups '("wheel" "netdev" "audio" "video" "plugdev")))
                 %base-user-accounts))
-
-  (define %stlink-v2-1-udev-rule
-    (udev-rule
-      "70-stlink-v2-1.rules"
-   "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0483\", ATTR{idProduct}==\"374b\", MODE=\"0660\", GROUP=\"plugdev\", TAG+=\"uaccess\"\n"))
 
   ;; Packages installed system-wide.  Users can also install packages
   ;; under their own account: use 'guix search KEYWORD' to search
@@ -71,7 +71,8 @@
    (append
      (list (service xfce-desktop-service-type)
 	   (udev-rules-service 'stlink-v2-1
-			       %stlink-v2-1-udev-rule)
+			       %stlink-v2-1-udev-rule
+			       #:groups '("plugdev"))
 
                  ;; To configure OpenSSH, pass an 'openssh-configuration'
                  ;; record as a second argument to 'service' below.
