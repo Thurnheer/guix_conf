@@ -2,6 +2,7 @@
 
 ;;; --- Package archives (only needed for the few extras below) -----------
 (require 'package)
+(require 'eglot)
 (setq package-archives
       '(("gnu"    . "[elpa.gnu.org](https://elpa.gnu.org/packages/)")
         ("nongnu" . "[elpa.nongnu.org](https://elpa.nongnu.org/nongnu/)")
@@ -65,13 +66,18 @@
 ;; Eglot is built-in since Emacs 29. It talks to clangd out of the box.
 (add-hook 'c-mode-hook   #'eglot-ensure)
 (add-hook 'c++-mode-hook #'eglot-ensure)
+(add-hook 'c-ts-mode-hook   #'eglot-ensure)
+(add-hook 'c++-ts-mode-hook #'eglot-ensure)
 
 ;; Tell clangd which standard to assume when no compile_commands.json exists.
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-               '((c++-mode c-mode) . ("clangd"
-                                      "--header-insertion=never"
-                                      "--clang-tidy"))))
+               '((c++-mode c-mode c-ts-mode c++-ts-mode)
+			 . ("clangd"
+			      "--background-index"
+			      "--completion-style=detailed"
+			      "--header-insertion=never"
+			      "--clang-tidy"))))
 
 ;; Built-in completion-at-point UI. Press TAB to complete.
 (setq tab-always-indent 'complete)
