@@ -50,7 +50,7 @@
   (home-environment
     (packages
      (map specification->package
-          '("git" "zsh" "neovim" "tmux" "font-fira-code" "starship" "emacs")))
+          '("git" "zsh" "neovim" "tmux" "font-fira-code" "starship" "emacs" "tree-sitter-c" "tree-sitter-cpp")))
     (services
      (append
       (list
