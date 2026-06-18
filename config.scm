@@ -18,6 +18,7 @@
 	     ;(gnu services sound)
 	     (gnu services base)
 	     (gnu services cups)
+	     (gnu services desktop)
 	     (gnu services shadow)
 	     (gnu packages embedded)
 	     (nongnu system linux-initrd))
@@ -77,7 +78,10 @@
                  (service openssh-service-type)
                  (service cups-service-type)
                  (set-xorg-configuration
-                  (xorg-configuration (keyboard-layout keyboard-layout))))
+                  (xorg-configuration (keyboard-layout keyboard-layout)))
+		 (service xfce-desktop-service-type)
+		 (service gvfs-service-type)
+		 )
 
     	   (modify-services %desktop-services (alsa-service-type old => (alsa-configuration)))
            ;; This is the default list of services we

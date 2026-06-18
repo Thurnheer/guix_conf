@@ -64,10 +64,13 @@
 		home-files-service-type
 		`((".tmux.conf" ,tmux-conf)))
 
+       (simple-service 'zsh-conf
+                home-files-service-type
+                `((".zshrc" ,zsh-conf)))
+
        ;; XDG-Konfigurationsdateien (jetzt wieder korrekt in der Liste)
        (service home-xdg-configuration-files-service-type
                 `(("emacs/init.el" ,emacs-conf)
-		  ("zsh/.zshrc" ,zsh-conf)
 		  ("gdb/gdbinit" ,%default-gdbinit)
                   ("nano/nanorc" ,%default-nanorc))))
 
