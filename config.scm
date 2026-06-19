@@ -10,7 +10,7 @@
 ;; Indicate which modules to import to access the variables
 ;; used in this configuration.
 (use-modules (gnu))
-(use-service-modules cups desktop networking ssh xorg sound)
+(use-service-modules cups desktop networking ssh xorg sound dbus)
 (use-modules (nongnu packages linux)
 	     (gnu packages shells)
 	     (gnu packages pulseaudio)
@@ -54,6 +54,9 @@
                           (specification->package "i3-wm")
                           (specification->package "i3status")
                           (specification->package "dmenu")
+			  (specification->package "bluez")
+			  (specification->package "blueman")
+			  (specification->package "bluez-alsa")
                           (specification->package "st")
                           (specification->package "ratpoison")
                           (specification->package "git")
@@ -69,7 +72,8 @@
   ;; services, run 'guix system search KEYWORD' in a terminal.
   (services
    (append
-     (list (service xfce-desktop-service-type)
+    (list (service xfce-desktop-service-type)
+	  (service bluetooth-service-type (bluetooth-configuration (auto-enable? #t)))
 	   (udev-rules-service 'stlink-v2-1
 			       %stlink-v2-1-udev-rule
 			       #:groups '("plugdev"))
