@@ -13,6 +13,7 @@
   #:use-module (guix gexp)
   #:use-module (guix packages)
   #:use-module (guix download)
+  #:use-module (gnu home services ssh)
   #:use-module (gnu system shadow))
 
 (define starship-toml
@@ -56,6 +57,7 @@
       (list
        ;(service home-fontconfig-service-type)
 
+       (service home-ssh-agent-service-type) ;; for ssh keyphrases
        (simple-service 'starship-toml
 		home-files-service-type
 		`((".config/starship.toml" ,starship-toml)))
