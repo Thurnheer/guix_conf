@@ -45,7 +45,7 @@
     (uri "https://raw.githubusercontent.com/Thurnheer/guix_conf/refs/heads/main/home_config/init.el")
     (file-name "init.el")
     (sha256
-      (base32 "0000000000000000000000000000000000000000000000000000")))) ;0000000000000000000000000000000000000000000000000000
+      (base32 "1nc9hlg8zy59is09wm5hzp5axd9mcm9gadpj17kgm3cjr6ls1zjn")))) ;0000000000000000000000000000000000000000000000000000
 
 (define home-config
   (home-environment
