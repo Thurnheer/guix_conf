@@ -44,13 +44,13 @@
     (uri "https://raw.githubusercontent.com/Thurnheer/guix_conf/refs/heads/main/home_config/init.el")
     (file-name "init.el")
     (sha256
-      (base32 "0kv9jywvpxbzsn0lfwi6mixj03jyki407x68rs7zrswljmg8k3ig")))) ;0000000000000000000000000000000000000000000000000000
+      (base32 "0000000000000000000000000000000000000000000000000000")))) ;0000000000000000000000000000000000000000000000000000
 
 (define home-config
   (home-environment
     (packages
      (map specification->package
-          '("git" "zsh" "neovim" "tmux" "font-fira-code" "starship" "emacs" "tree-sitter-c" "tree-sitter-cpp")))
+          '("git" "zsh" "neovim" "tmux" "font-fira-code" "starship" "emacs" "tree-sitter-c" "tree-sitter-cpp" "direnv" "emacs-envrc")))
     (services
      (append
       (list

@@ -3,6 +3,8 @@
 ;;; --- Package archives (only needed for the few extras below) -----------
 (require 'package)
 (require 'eglot)
+(require 'envrc)
+(envrc-global-mode)
 (setq package-archives
       '(("gnu"    . "[elpa.gnu.org](https://elpa.gnu.org/packages/)")
         ("nongnu" . "[elpa.nongnu.org](https://elpa.nongnu.org/nongnu/)")
